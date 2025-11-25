@@ -206,16 +206,32 @@
       const urlParams = new URLSearchParams(window.location.search);
       const formType = urlParams.get('type');
 
-      if (formType === 'simple') {
+
+      if (formType === 'login' || formType === 'signin') {
         // Hide fields for simple registration
-        const fieldsToHide = [
+
+        let fieldsToHide = [];
+
+        if (formType === 'login'){
+          fieldsToHide = [
           'contact',
           'dob',
           'address',
           'imageUpload',
           'confirmPassword'
-        ];
-
+          ];
+        }
+        
+        if (formType === 'signin'){
+          fieldsToHide = [
+            'Fname',
+            'NU ID',
+            'email',
+            'password',
+            'confirmPassword'
+          ];
+        }
+        
         fieldsToHide.forEach(fieldId => {
           const field = document.getElementById(fieldId);
           if (field) {
