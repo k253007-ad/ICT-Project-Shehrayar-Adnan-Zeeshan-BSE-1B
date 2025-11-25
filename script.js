@@ -434,57 +434,115 @@ if (getCurrentPage() === 'busDetails.html') {
     }
 }
 
-// Wait for the entire DOM to be fully loaded before running form validation code
 document.addEventListener("DOMContentLoaded", function () {
-  // Get reference to the form element
   const form = document.querySelector("form");
-  // Add an event listener for form submission
+
   form.addEventListener("submit", function (e) {
-    // Prevent the default form submission behavior (page refresh)
     e.preventDefault();
-    // Get the value from the first name input field and remove whitespace
-    const Fname = document.getElementById("Fname").value.trim();
-    // Get the value from the NU ID input field and remove whitespace
-    const NUID = document.getElementById("NU ID").value.trim();
-    // Get the value from the email input field and remove whitespace
-    const email = document.getElementById("email").value.trim();
-    // Get the value from the contact number input field and remove whitespace
-    const contact = document.getElementById("contact").value.trim();
-    // Get the date of birth value
-    const dob = document.getElementById("dob").value;
-    // Get the password value
-    const password = document.getElementById("password").value;
-    // Get the confirm password value
-    const confirmPassword = document.getElementById("confirmPassword").value;
-    // Check if any required fields are empty
-    if (!Fname || !NUID || !email || !contact || !dob) {
-      // Show alert if required fields are missing
-      alert("Please fill out all required fields.");
-      // Exit the function without submitting
-      return;
+
+    // Get all visible required fields only
+    const visibleRequiredFields = Array.from(
+      form.querySelectorAll("[required]")
+    ).filter(field => {
+      // A field is visible if none of its parents are hidden
+      return field.offsetParent !== null;
+    });
+
+    // Validate visible required fields
+    for (let field of visibleRequiredFields) {
+      if (!field.value.trim()) {
+        alert("Please fill out all required fields.");
+        return;
+      }
     }
-    // Check if password and confirm password fields match
-    if (password !== confirmPassword) {
-      // Show alert if passwords don't match
-      alert("Passwords do not match.");
-      // Exit the function without submitting
-      return;
+
+    // Password match check — but only if both fields are visible
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+
+    if (
+      password &&
+      confirmPassword &&
+      password.offsetParent !== null &&
+      confirmPassword.offsetParent !== null
+    ) {
+      if (password.value !== confirmPassword.value) {
+        alert("Passwords do not match.");
+        return;
+      }
     }
-    // Show success message if all validations pass
+
     alert("Form submitted successfully!");
-    // Submit the form
     form.submit();
   });
-  // Get reference to the reset button
+
   const resetBtn = document.querySelector("button[type='reset']");
-  // Add an event listener for the reset button click
   resetBtn.addEventListener("click", function (e) {
-    // Show confirmation dialog asking if user wants to reset the form
     const confirmReset = confirm("Are you sure you want to reset the form?");
-    // If user clicks "Cancel" in the confirmation dialog
     if (!confirmReset) {
-      // Prevent the reset action from occurring
       e.preventDefault();
     }
   });
 });
+
+
+
+
+
+      // Check URL parameter to determine form type
+      const urlParams = new URLSearchParams(window.location.search);
+      const formType = urlParams.get('type');
+
+
+      if (formType === 'login' || formType === 'signin') {
+        // Hide fields for simple registration
+
+        let fieldsToHide = [];
+
+        if (formType === 'login'){
+          fieldsToHide = [
+            'Fname',
+            'NU ID',
+          'contact',
+          'dob',
+          'address',
+          'imageUpload',
+          'confirmPassword'
+          ];
+        }
+        
+        if (formType === 'signin'){
+          fieldsToHide = [
+            'contact',
+          'dob',
+          'address',
+          'imageUpload',
+          ];
+        }
+        
+        fieldsToHide.forEach(fieldId => {
+          const field = document.getElementById(fieldId);
+          if (field) {
+            const formGroup = field.closest('.form-group');
+            if (formGroup) {
+              formGroup.style.display = 'none';
+              // Remove required attribute for hidden fields
+              field.removeAttribute('required');
+            }
+          }
+        });
+
+        // Hide gender radio buttons
+        const genderGroup = document.querySelector('label').parentElement;
+        const genderLabel = Array.from(document.querySelectorAll('.form-group > label')).find(
+          label => label.textContent === 'Gender'
+        );
+        if (genderLabel) {
+          const genderContainer = genderLabel.parentElement;
+          genderContainer.style.display = 'none';
+          // Remove required from gender inputs
+          document.querySelectorAll('input[name="gender"]').forEach(input => {
+            input.removeAttribute('required');
+          });
+        }
+      }
