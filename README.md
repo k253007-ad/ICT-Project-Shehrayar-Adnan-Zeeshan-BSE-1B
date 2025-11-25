@@ -40,7 +40,7 @@ Works on all modern browsers and mobile devices.
 ## License
 
 - Main Developer : Adnan Ahmed 25k-3007
-- Data Manager   : Shehrayar Zafar
-- CSS Designer   : Muhammad Zeeshan
+- Data Manager   : Shehrayar Zafar 25K-3041
+- CSS Designer   : Muhammad Zeeshan 25K-3068
 
 
