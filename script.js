@@ -1,44 +1,202 @@
+// Function to display a specific page section by its ID
 function showPage(id) {
+    // Select all section elements on the page
     document.querySelectorAll('section').forEach(sec => {
-        sec.classList.remove('active');
+    // Remove the 'active' class from each section to hide them
+    sec.classList.remove('active');
     });
+    // Find the section with the specified ID and add the 'active' class to show it
     document.getElementById(id).classList.add('active');
 }
 
+// Bus stops data
 let stops = [
-  "Ala Din Park", "Askari – II & III", "Askari – IV", "Aziz Bhatti Park", "Bahadurabad",
-  "Bait-Ul-Mukarram", "CMH", "Cant Station", "Cantt. Bazaar", "Colony Gate", "Dalmia",
-  "Dhoraji", "Drig Road", "Esa Nagri", "FTC", "Falcon", "Forum Shopping Mall", "Gizri",
-  "Guro Mandir", "Hassan Square", "Hilltop", "Hyper Star", "Iqra University",
-  "Islamiaya College", "Jail Road", "Jamshed Road", "Johar More", "KPT Bridge",
-  "Karsaz Pankha Stop", "Kashmir Road", "Kh. Bukhari", "Kh. Ittehad", "Kh. Mujahid",
-  "Khalid Bin WaleedRoad", "Khudadad Colony", "Korangi Crossing", "Korangi No. 2",
-  "Korangi No. 5", "Lal Flat", "Landhi 89", "Landhi No. 4", "Liaquat 10. No.",
-  "M. Ali Society", "Malir 15", "Malir Cantt Askari-V", "Malir Cantt Phase-I",
-  "Malir Halt", "Manzoor Colony", "Mashriq Centre", "Matka Stop", "Millennium",
-  "Mumtaz Manzil", "NMC", "Nasir Jump", "PAF Chapter", "Perfume Chowk Johar",
-  "Phase – IV", "Race Course", "Saba Avenue", "Sector - G", "Sector - J", "Sharfabad",
-  "Sir Syed Road", "Soldier Bazar", "Stadium", "Stadium Road", "Star Gate", "Tariq Road",
-  "Teen Talwar", "Tipu Sultan Road", "Urdu Science College", "Usman Memmoiral",
-  "ZamZama", "Zubaida Hospital"
+  "Ala Din Park",
+  "Askari – II & III",
+  "Askari – IV",
+  "Aziz Bhatti Park",
+  "Bahadurabad",
+  "Bait-Ul-Mukarram",
+  "CMH",
+  "Cant Station",
+  "Cantt. Bazaar",
+  "Colony Gate",
+  "Dalmia",
+  "Dhoraji",
+  "Drig Road",
+  "Esa Nagri",
+  "FTC",
+  "Falcon",
+  "Forum Shopping Mall",
+  "Gizri",
+  "Guro Mandir",
+  "Hassan Square",
+  "Hilltop",
+  "Hyper Star",
+  "Iqra University",
+  "Islamiaya College",
+  "Jail Road",
+  "Jamshed Road",
+  "Johar More",
+  "KPT Bridge",
+  "Karsaz Pankha Stop",
+  "Kashmir Road",
+  "Kh. Bukhari",
+  "Kh. Ittehad",
+  "Kh. Mujahid",
+  "Khalid Bin WaleedRoad",
+  "Khudadad Colony",
+  "Korangi Crossing",
+  "Korangi No. 2",
+  "Korangi No. 5",
+  "Lal Flat",
+  "Landhi 89",
+  "Landhi No. 4",
+  "Liaquat 10. No.",
+  "M. Ali Society",
+  "Malir 15",
+  "Malir Cantt Askari-V",
+  "Malir Cantt Phase-I",
+  "Malir Halt",
+  "Manzoor Colony",
+  "Mashriq Centre",
+  "Matka Stop",
+  "Millennium",
+  "Mumtaz Manzil",
+  "NMC",
+  "Nasir Jump",
+  "PAF Chapter",
+  "Perfume Chowk Johar",
+  "Phase – IV",
+  "Race Course",
+  "Saba Avenue",
+  "Sector - G",
+  "Sector - J",
+  "Sharfabad",
+  "Sir Syed Road",
+  "Soldier Bazar",
+  "Stadium",
+  "Stadium Road",
+  "Star Gate",
+  "Tariq Road",
+  "Teen Talwar",
+  "Tipu Sultan Road",
+  "Urdu Science College",
+  "Usman Memmoiral",
+  "ZamZama",
+  "Zubaida Hospital"
 ];
 
+// Buses data
 const buses = [
-    { id: 1, name: "1", stops: ["Malir Cantt Phase-I", "Malir Cantt Askari-V"], filledSeats: 30, totalSeats: 50 },
-    { id: 2, name: "1-B", stops: ["Malir Cantt Phase-I", "Sector - G", "Sector - J", "Falcon", "CMH", "Cantt. Bazaar"], filledSeats: 35, totalSeats: 50 },
-    { id: 3, name: "11", stops: ["Soldier Bazar", "Guro Mandir", "Islamiaya College", "Stadium Road"], filledSeats: 42, totalSeats: 50 },
-    { id: 4, name: "12", stops: ["Jail Road", "Jamshed Road", "Khudadad Colony", "Kashmir Road", "Sir Syed Road", "Khalid Bin WaleedRoad", "Tariq Road", "Tipu Sultan Road"], filledSeats: 39, totalSeats: 50 },
-    { id: 5, name: "13", stops: ["Esa Nagri", "Mashriq Centre", "Stadium", "Dalmia", "Millennium", "Malir Halt", "Malir 15"], filledSeats: 44, totalSeats: 50 },
-    { id: 6, name: "14", stops: ["Sharfabad", "Bahadurabad", "Dhoraji", "M. Ali Society", "Karsaz Pankha Stop"], filledSeats: 28, totalSeats: 45 },
-    { id: 7, name: "15", stops: ["Forum Shopping Mall", "ZamZama", "Gizri", "Phase – IV"], filledSeats: 45, totalSeats: 50 },
-    { id: 8, name: "16", stops: ["Hyper Star", "Kh. Mujahid", "Saba Avenue", "Kh. Bukhari", "Kh. Ittehad"], filledSeats: 40, totalSeats: 50 },
-    { id: 9, name: "19", stops: ["Hassan Square", "Mumtaz Manzil", "Bait-Ul-Mukarram", "Urdu Science College", "Aziz Bhatti Park"], filledSeats: 42, totalSeats: 50 },
-    { id: 10, name: "31", stops: ["KPT Bridge", "Iqra University", "Manzoor Colony", "PAF Chapter"], filledSeats: 44, totalSeats: 50 },
-    { id: 11, name: "33", stops: ["Liaquat 10. No.", "Usman Memmoiral", "Dhoraji", "Zubaida Hospital", "M. Ali Society"], filledSeats: 45, totalSeats: 50 },
-    { id: 12, name: "34", stops: ["Korangi Crossing", "Nasir Jump", "Korangi No. 2", "Korangi No. 5", "Landhi No. 4", "Landhi 89"], filledSeats: 39, totalSeats: 50 },
-    { id: 13, name: "35", stops: ["Teen Talwar", "Race Course", "Cant Station", "Askari – II & III", "NMC", "FTC"], filledSeats: 37, totalSeats: 50 },
-    { id: 14, name: "39", stops: ["Perfume Chowk Johar", "Hilltop", "Johar More", "Drig Road", "Colony Gate", "Star Gate"], filledSeats: 35, totalSeats: 50 },
-    { id: 15, name: "40", stops: ["Matka Stop", "Ala Din Park", "Lal Flat", "Askari – IV"], filledSeats: 32, totalSeats: 50 },
+    {
+        id: 1,
+        name: "1",
+        stops: ["Malir Cantt Phase-I", "Malir Cantt Askari-V"],
+        filledSeats: 30,
+        totalSeats: 50
+    },
+    {
+        id: 2,
+        name: "1-B",
+        stops: ["Malir Cantt Phase-I", "Sector - G", "Sector - J", "Falcon", "CMH", "Cantt. Bazaar"],
+        filledSeats: 35,
+        totalSeats: 50
+    },
+    
+    {
+        id: 3,
+        name: "11",
+        stops: ["Soldier Bazar", "Guro Mandir", "Islamiaya College", "Stadium Road"],
+        filledSeats: 42,
+        totalSeats: 50
+    },
+    {
+        id: 4,
+        name: "12",
+        stops: ["Jail Road", "Jamshed Road", "Khudadad Colony", "Kashmir Road", "Sir Syed Road", "Khalid Bin WaleedRoad", "Tariq Road", "Tipu Sultan Road"],
+        filledSeats: 39,
+        totalSeats: 50
+    },
+    {
+        id: 5,
+        name: "13",
+        stops: ["Esa Nagri", "Mashriq Centre", "Stadium", "Dalmia", "Millennium", "Malir Halt", "Malir 15"],
+        filledSeats: 44,
+        totalSeats: 50
+    },
+    {
+        id: 6,
+        name: "14",
+        stops: ["Sharfabad", "Bahadurabad", "Dhoraji", "M. Ali Society", "Karsaz Pankha Stop"],
+        filledSeats: 28,
+        totalSeats: 45
+    },
+    
+    {
+        id: 7,
+        name: "15",
+        stops: ["Forum Shopping Mall", "ZamZama", "Gizri", "Phase – IV"],
+        filledSeats: 45,
+        totalSeats: 50
+    },
+    {
+        id: 8,
+        name: "16",
+        stops: ["Hyper Star", "Kh. Mujahid", "Saba Avenue", "Kh. Bukhari", "Kh. Ittehad"],
+        filledSeats: 40,
+        totalSeats: 50
+    },
+    {
+        id: 9,
+        name: "19",
+        stops: ["Hassan Square", "Mumtaz Manzil", "Bait-Ul-Mukarram", "Urdu Science College", "Aziz Bhatti Park"],
+        filledSeats: 42,
+        totalSeats: 50
+    },
+    {
+        id: 10,
+        name: "31",
+        stops: ["KPT Bridge", "Iqra University", "Manzoor Colony", "PAF Chapter"],
+        filledSeats: 44,
+        totalSeats: 50
+    },
+    {
+        id: 11,
+        name: "33",
+        stops: ["Liaquat 10. No.", "Usman Memmoiral", "Dhoraji", "Zubaida Hospital", "M. Ali Society"],
+        filledSeats: 45,
+        totalSeats: 50
+        
+    },
+    {
+        id: 12,
+        name: "34",
+        stops: ["Korangi Crossing", "Nasir Jump", "Korangi No. 2", "Korangi No. 5", "Landhi No. 4", "Landhi 89"],
+        filledSeats: 39,
+        totalSeats: 50
+    },
+    {
+        id: 13,
+        name: "35",
+        stops: ["Teen Talwar", "Race Course", "Cant Station", "Askari – II & III", "NMC", "FTC"],
+        filledSeats: 37,
+        totalSeats: 50
+    },
+    {
+        id: 14,
+        name: "39",
+        stops: ["Perfume Chowk Johar", "Hilltop", "Johar More", "Drig Road", "Colony Gate", "Star Gate"],
+        filledSeats: 35,
+        totalSeats: 50
+    },
+    {
+        id: 15,
+        name: "40",
+        stops: ["Matka Stop", "Ala Din Park", "Lal Flat", "Askari – IV"],
+        filledSeats: 32,
+        totalSeats: 50 
+    },
 ];
 
 function getCurrentPage() {
@@ -68,8 +226,9 @@ if (getCurrentPage() === 'search.html' || getCurrentPage() === '') {
         const filter = input.value.toLowerCase();
         const li = document.querySelectorAll("#stopsList li");
         const stopsCount = document.getElementById('stopsCount');
+        
         let visibleCount = 0;
-
+        
         li.forEach(item => {
             const textValue = item.textContent || item.innerText;
             const isVisible = textValue.toLowerCase().includes(filter);
@@ -104,17 +263,26 @@ if (getCurrentPage() === 'stops.html') {
         
         if (filteredBuses.length > 0) {
             busesList.innerHTML = filteredBuses.map(bus => {
+
                 let itemClass = 'busInfo';
+                
+
                 return `
                     <li class="${itemClass}" onclick="viewBusDetails(${bus.id})">
                         <div class="bus-name">Bus ${bus.name}</div>
-                        <div class="bus-seats">${bus.filledSeats}/${bus.totalSeats} seats filled</div>
+                        <div class="bus-seats"> 
+                            ${bus.filledSeats}/${bus.totalSeats} seats filled 
+                        </div>
                     </li>
                 `;
             }).join('');
 
             const totalBusesEl = document.getElementById('totalBuses');
-            if (totalBusesEl) totalBusesEl.textContent = filteredBuses.length;
+            
+            if (totalBusesEl) {
+                totalBusesEl.textContent = filteredBuses.length;
+            }
+            
         } else {
             busesList.innerHTML = '<li style="text-align: center; color: #999;">No buses available for this stop</li>';
         }
@@ -155,11 +323,14 @@ if (getCurrentPage() === 'busDetails.html') {
         const routeMapEl = document.getElementById('routeMap');
         if (routeMapEl) {
             const routeHTML = selectedBus.stops.map((stop, index) => {
+
                 return `
                     <div class="route-stop">
                         <div class="stop-details">
                             <span class="stop-number">Stop ${index + 1}</span>
-                            <div class="stop-name-text">${stop}</div>
+                            <div class="stop-name-text">
+                                ${stop}
+                            </div>
                         </div>
                     </div>
                 `;
@@ -169,7 +340,9 @@ if (getCurrentPage() === 'busDetails.html') {
         }
     } else {
         const busNameEl = document.getElementById('busName');
-        if (busNameEl) busNameEl.textContent = 'Bus not found';
+        if (busNameEl) {
+            busNameEl.textContent = 'Bus not found';
+        }
         
         const routeMapEl = document.getElementById('routeMap');
         if (routeMapEl) {
@@ -180,40 +353,26 @@ if (getCurrentPage() === 'busDetails.html') {
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("form");
-
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-
-    const visibleRequiredFields = Array.from(
-      form.querySelectorAll("[required]")
-    ).filter(field => field.offsetParent !== null);
-
-    for (let field of visibleRequiredFields) {
-      if (!field.value.trim()) {
-        alert("Please fill out all required fields.");
-        return;
-      }
+    const Fname = document.getElementById("Fname").value.trim();
+    const NUID = document.getElementById("NU ID").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const contact = document.getElementById("contact").value.trim();
+    const dob = document.getElementById("dob").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    if (!Fname || !NUID || !email || !contact || !dob) {
+      alert("Please fill out all required fields.");
+      return;
     }
-
-    const password = document.getElementById("password");
-    const confirmPassword = document.getElementById("confirmPassword");
-
-    if (
-      password &&
-      confirmPassword &&
-      password.offsetParent !== null &&
-      confirmPassword.offsetParent !== null
-    ) {
-      if (password.value !== confirmPassword.value) {
-        alert("Passwords do not match.");
-        return;
-      }
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
     }
-
     alert("Form submitted successfully!");
     form.submit();
   });
-
   const resetBtn = document.querySelector("button[type='reset']");
   resetBtn.addEventListener("click", function (e) {
     const confirmReset = confirm("Are you sure you want to reset the form?");
@@ -222,40 +381,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-const urlParams = new URLSearchParams(window.location.search);
-const formType = urlParams.get('type');
-
-if (formType === 'login' || formType === 'signin') {
-    let fieldsToHide = [];
-
-    if (formType === 'login'){
-      fieldsToHide = ['Fname', 'NU ID', 'contact', 'dob', 'address', 'imageUpload', 'confirmPassword'];
-    }
-    
-    if (formType === 'signin'){
-      fieldsToHide = ['contact', 'dob', 'address', 'imageUpload'];
-    }
-    
-    fieldsToHide.forEach(fieldId => {
-      const field = document.getElementById(fieldId);
-      if (field) {
-        const formGroup = field.closest('.form-group');
-        if (formGroup) {
-          formGroup.style.display = 'none';
-          field.removeAttribute('required');
-        }
-      }
-    });
-
-    const genderLabel = Array.from(document.querySelectorAll('.form-group > label'))
-      .find(label => label.textContent === 'Gender');
-
-    if (genderLabel) {
-      const genderContainer = genderLabel.parentElement;
-      genderContainer.style.display = 'none';
-      document.querySelectorAll('input[name="gender"]').forEach(input => {
-        input.removeAttribute('required');
-      });
-    }
-}
